@@ -56,13 +56,19 @@ class CmdArgs: Cmd {
             case .this:
                 return translateToASM_PUSH(key: "THIS")
             case .pointer:
-                <#code#>
-            case .aStatic:
-                <#code#>
+                if arg2 == 1{
+                    return translateToASM_PUSH2(key: "THAT")
+                }else if arg2 == 0{
+                    return translateToASM_PUSH2(key: "THIS")
+                }else {
+                    return "error"
+                }
+            //case .aStatic:
+                
             case .temp:
-                <#code#>
+                return translateToASM_PUSH2(key: String(5+arg2))
             default:
-                print("eror")
+                return "error"
             }
         case .pop:
             switch arg1 {
@@ -75,25 +81,33 @@ class CmdArgs: Cmd {
             case .this:
                 return translateToASM_POP(key: "THIS")
             case .pointer:
-                <#code#>
-            case .aStatic:
-                <#code#>
+                if arg2 == 1{
+                    return translateToASM_POP2(key: "THAT")
+                }else if arg2 == 0{
+                    return translateToASM_POP2(key: "THIS")
+                }else {
+                    return "error"
+                }
+            //case .aStatic:
+                
             case .temp:
-                <#code#>
+                return translateToASM_POP2(key: String(5+arg2))
             default:
-                print("eror")
+                return "error"
             }
         default:
-            print("eror")
+            return "error"
         }
         
     }
     
     init(aName:Command , aArg1:ArgType , aArg2:Int) {
-        name = aName
         arg1 = aArg1
         arg2 = aArg2
+        super.init(aName:aName)
     }
+    
+    
     // METHODE FOR PUSH
     private func translateToASM_PUSH_CONSTANT()->String{
         var translate = "@\(arg2) \n"
@@ -101,13 +115,13 @@ class CmdArgs: Cmd {
         translate.append(push_base())
         return translate
     }
-    
+    // for local+that+this
     private func translateToASM_PUSH(key:String)->String{
         var translate = "@\(arg2) \n"
         translate.append("D=A\n")
         translate.append("@\(key)\n")
-        translate.append("A=M+D")
-        translate.append("D=M")
+        translate.append("A=M+D\n")
+        translate.append("D=M\n")
         translate.append(push_base())
         return translate
     }
@@ -116,42 +130,46 @@ class CmdArgs: Cmd {
         var translate = "@ARG\n"
         translate.append("D=A\n")
         translate.append("@\(arg2)\n")
-        translate.append("D=D+A")
-        translate.append("A=D")
-        translate.append("@SP")
-        translate.append("M=D")
-        translate.append("@SP")
-        translate.append("M=M+1")
-        return translate
-    }
-    
-    private func translateToASM_PUSH_THAT()->String{
-        var translate = "@\(arg2) \n"
-        translate.append("D=A\n")
-        translate.append("@THAT\n")
-        translate.append("A=M+D")
-        translate.append("D=M")
-        translate.append(push_base())
+        translate.append("D=D+A\n")
+        translate.append("A=D\n")
+        translate.append("@SP\n")
+        translate.append("M=D\n")
+        translate.append("@SP\n")
+        translate.append("M=M+1\n")
         return translate
     }
 
     
+    // for pointer+temp
+    private func translateToASM_PUSH2(key:String)->String{
+        var translate = "@\(key)\n"
+        translate.append("D=M\n")
+        translate.append(push_base())
+        return translate
+    }
     
     
     // METHODE FOR POP
     
-   
+   // for local+argument+that+this
     private func translateToASM_POP(key:String)->String{
         var translate = pop_base_begin()
         translate.append("@\(key)\n")
         translate.append("A=M\n")
         for _ in 1...arg2 {
-            translate.append("A=A+1")
+            translate.append("A=A+1\n")
         }
         translate.append(pop_base_end())
         return translate
     }
     
+    // for pointer + temp
+    private func translateToASM_POP2(key:String)->String{
+        var translate = pop_base_begin()
+        translate.append("@\(key)\n")
+        translate.append(pop_base_end())
+        return translate
+    }
     
     
     

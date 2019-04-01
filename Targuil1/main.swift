@@ -19,7 +19,7 @@ func isValidFile(file:String!) -> Bool {
     home.appendPathComponent(file);
     return home.isFileURL
 }
-func push_base ()->String{
+/*func push_base ()->String{
     var res = ""
     res.append("@SP\n")
     res.append("A=M\n")
@@ -60,7 +60,11 @@ func push_translate (line:String)-> String{
     
     
 }
+ */
 
+let test = CmdArgs(aName:Command.push,aArg1:ArgType.that,aArg2:8);
+print ("Hello")
+print(test.translateToASM())
 
 //Ask the user to enter a directoty path
 print("Hi ! 🤓","Please enter a name of your file.vm :");
@@ -76,7 +80,6 @@ repeat{
 do{
     let stack : [Int]
     
-    
     let content = try String(contentsOfFile: home.path, encoding: .utf8)
     let arrayLine = content.split(separator: "\r\n")
     for line in arrayLine{
@@ -89,8 +92,8 @@ do{
             print("pop")
         case "push":
             print("// "+line )
-            print(push_translate(line: String(line)))
-            print(Int(Commamde.add))
+            //print(push_translate(line: String(line)))
+            print(Command.add)
             
         case "add":
             print("add")

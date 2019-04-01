@@ -32,8 +32,8 @@ class Cmd  {
         case .not:
             return translateToASM_ADD();
         default:
-            break
-        }
+            return "error"
+                }
     }
     
     init(aName:Command) {
