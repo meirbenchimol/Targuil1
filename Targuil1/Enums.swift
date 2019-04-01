@@ -8,5 +8,5 @@
 
 import Foundation
 
-enum Command {case add,sub,neg,eq,lt,gt,and,or,not}
-enum ArgType {case constant,local,argument,that,this,pointer,aStatic}
+enum Command {case add,sub,neg,eq,lt,gt,and,or,not,push,pop}
+enum ArgType {case constant,local,argument,that,this,pointer,aStatic,temp}

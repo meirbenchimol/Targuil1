@@ -9,7 +9,7 @@
 import Foundation
 class Cmd  {
     
-    private var name : Command
+    internal var name : Command
     
     public  func translateToASM()->String{
         switch name {
