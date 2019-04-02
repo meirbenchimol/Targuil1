@@ -38,14 +38,15 @@ class Cmd  {
         case .not:
             return translateToASM_NOT();
         default:
-            return "error"
+            return "// Error trying to parse \(name) \n"
                 }
     }
     
     
     
     private func translateToASM_ADD()->String{
-        var translate = "@SP \n"
+        var translate = "// \(name) \n"
+        translate.append("@SP \n")
         translate.append("A=M-1"+"\n")
         translate.append("D=M"+"\n")
         translate.append("A=A-1"+"\n")
@@ -131,6 +132,7 @@ class Cmd  {
     
     private func translateToASM_NOT()->String{
         var translate = [String]()
+        translate.append("// \(name)")
         translate.append("@SP")
         translate.append("A=M-1")
         translate.append("M=!M")
@@ -139,6 +141,7 @@ class Cmd  {
     
     private func translateToASM_NEG()->String{
         var translate = [String]()
+        translate.append("// \(name)")
         translate.append("@SP")
         translate.append("A=M-1")
         translate.append("D=M")

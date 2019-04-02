@@ -67,7 +67,7 @@ class FileManagerCu{
                     
                     
                     //Prepare the new file
-                    let newFileName = currentFromHome.lastPathComponent+".asm"
+                    let newFileName = (currentFromHome.lastPathComponent).replacingOccurrences(of: ".vm", with: ".asm")
                     currentFromHome.deleteLastPathComponent()
                     currentFromHome.appendPathComponent(newFileName)
                     var translated = translateFileToVM(sourcePath: currentPath, destinationPath: currentFromHome.path)
