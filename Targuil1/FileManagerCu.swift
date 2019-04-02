@@ -102,9 +102,13 @@ class FileManagerCu{
                             aName:Command(rawValue: String(words[0]))!,
                             aArg1:ArgType(rawValue: String(words[1]))!,
                             aArg2: Int(String(words[1]))!)*/
-                        cmd = Cmd(
-                            aName:Command(rawValue: String(words[0]))!)
+                        if (words[1] == "static"){
+                            cmd = CmdArgs(aName:Command(rawValue: String(words[0]))!, aArg1: ArgType._static,aArg2:Int(words[2])!,afile_name:String(sourcePath))
+                        }else
+                        {cmd = CmdArgs(aName:Command(rawValue: String(words[0]))!,aArg1:ArgType(rawValue: String(words[1]))!,aArg2:Int(words[2])!)
+                        }
                     }
+    
                     else
                     {
                         cmd = Cmd(

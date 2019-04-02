@@ -17,6 +17,7 @@ class Cmd  {
         name = aName
     }
     
+    
     public  func translateToASM()->String{
         switch name {
         case .add:
@@ -94,7 +95,7 @@ class Cmd  {
         translate.append("(IF_FALSE\(Cmd.counterJumpLbl)")
         translate.append("@SP")
         translate.append("M=M-1")
-        
+
         //Increment the counter for labels
         Cmd.counterJumpLbl+=1
         

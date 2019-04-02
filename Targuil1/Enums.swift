@@ -9,4 +9,4 @@
 import Foundation
 
 enum Command : String {case add,sub,neg,eq,lt,gt,and,or,not,push,pop}
-enum ArgType : String {case constant,local,argument,that,this,pointer,aStatic,temp}
+enum ArgType : String {case constant,local,argument,that,this,pointer,_static,temp}

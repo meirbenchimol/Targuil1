@@ -10,7 +10,9 @@ import Foundation
 class CmdArgs: Cmd {
     var arg1:ArgType
     var arg2:Int
+    var file_name:String
     
+   
     // methode
     
     func push_base ()->String{
@@ -63,8 +65,8 @@ class CmdArgs: Cmd {
                 }else {
                     return "error"
                 }
-            //case .aStatic:
-                
+            case ._static:
+                return translateToASM_PUSH2(key: file_name+"."+String(arg2))
             case .temp:
                 return translateToASM_PUSH2(key: String(5+arg2))
             default:
@@ -88,7 +90,8 @@ class CmdArgs: Cmd {
                 }else {
                     return "error"
                 }
-            //case .aStatic:
+            case ._static:
+                return translateToASM_POP2(key: file_name+"."+String(arg2))
                 
             case .temp:
                 return translateToASM_POP2(key: String(5+arg2))
@@ -104,6 +107,14 @@ class CmdArgs: Cmd {
     init(aName:Command , aArg1:ArgType , aArg2:Int) {
         arg1 = aArg1
         arg2 = aArg2
+        file_name=""
+        super.init(aName:aName)
+    }
+    
+    init(aName:Command , aArg1:ArgType , aArg2:Int, afile_name:String) {
+        arg1 = aArg1
+        arg2 = aArg2
+        file_name = afile_name
         super.init(aName:aName)
     }
     
@@ -140,13 +151,14 @@ class CmdArgs: Cmd {
     }
 
     
-    // for pointer+temp
+    // for pointer+temp+static
     private func translateToASM_PUSH2(key:String)->String{
         var translate = "@\(key)\n"
         translate.append("D=M\n")
         translate.append(push_base())
         return translate
     }
+    
     
     
     // METHODE FOR POP
@@ -163,7 +175,7 @@ class CmdArgs: Cmd {
         return translate
     }
     
-    // for pointer + temp
+    // for pointer + temp + static
     private func translateToASM_POP2(key:String)->String{
         var translate = pop_base_begin()
         translate.append("@\(key)\n")
