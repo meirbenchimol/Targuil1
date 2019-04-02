@@ -63,20 +63,20 @@ class FileManagerCu{
             for item in items {
                 currentFromHome.appendPathComponent(item)
                 if(currentFromHome.pathExtension == "vm"){
+                    let currentPath = currentFromHome.path
                     
-                    var translated = translateFileToVM(path:currentFromHome.path)
                     
                     //Prepare the new file
                     let newFileName = currentFromHome.lastPathComponent+".asm"
                     currentFromHome.deleteLastPathComponent()
                     currentFromHome.appendPathComponent(newFileName)
-                    
+                    var translated = translateFileToVM(sourcePath: currentPath, destinationPath: currentFromHome.path)
                     
                     //Create the file
                     FileManagerCu.fileManager.createFile(atPath: currentFromHome.path, contents: Data(translated.utf8))
                     
                 }
-                home.deleteLastPathComponent()
+                currentFromHome.deleteLastPathComponent()
                 
             }
             
@@ -86,28 +86,33 @@ class FileManagerCu{
         }
     }
     
-    private func translateFileToVM(path:String)->String{
+    private func translateFileToVM(sourcePath:String, destinationPath:String)->String{
         var translatedAll = [String]()
         do{
             //Translate vm file
-            let content = try String(contentsOfFile: path, encoding: .utf8)
-            let arrayLine = content.split(separator: "\n")
+            let content = try String(contentsOfFile: sourcePath, encoding: .utf8)
+            let arrayLine = content.split(separator: "\r\n")
             for line in arrayLine{
                 let words = line.split(separator: " ")
                 var cmd:Cmd
-                if(words.count>1){
-                    cmd = CmdArgs(
-                        aName:Command(rawValue: String(words[0]))!,
-                        aArg1:ArgType(rawValue: String(words[1]))!,
-                        aArg2: Int(String(words[1]))!)
+                if(!(words[0] == "//")){
+                    
+                    if(words.count>1){
+                        /*cmd = CmdArgs(
+                            aName:Command(rawValue: String(words[0]))!,
+                            aArg1:ArgType(rawValue: String(words[1]))!,
+                            aArg2: Int(String(words[1]))!)*/
+                        cmd = Cmd(
+                            aName:Command(rawValue: String(words[0]))!)
+                    }
+                    else
+                    {
+                        cmd = Cmd(
+                            aName:Command(rawValue: String(words[0]))!)
+                    }
+                    
+                    translatedAll.append(cmd.translateToASM())
                 }
-                else
-                {
-                    cmd = Cmd(
-                        aName:Command(rawValue: String(words[0]))!)
-                }
-                
-                translatedAll.append(cmd.translateToASM())
                 
             }
         }
