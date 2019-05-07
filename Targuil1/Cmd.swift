@@ -92,7 +92,7 @@ class Cmd  {
         translate.append("A=A-1")
         translate.append("M=D")
         
-        translate.append("(IF_FALSE\(Cmd.counterJumpLbl)")
+        translate.append("(IF_FALSE\(Cmd.counterJumpLbl))")
         translate.append("@SP")
         translate.append("M=M-1")
 

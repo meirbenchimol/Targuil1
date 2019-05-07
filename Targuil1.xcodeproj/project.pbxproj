@@ -9,9 +9,6 @@
 /* Begin PBXBuildFile section */
 		DB90579E2252ECF500D6A61E /* FileManagerCu.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB90579D2252ECF500D6A61E /* FileManagerCu.swift */; };
 		EEBB00A82247EF27003E2CE1 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBB00A72247EF27003E2CE1 /* main.swift */; };
-		EEBB00AF22511B79003E2CE1 /* Machlim_op.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBB00AE22511B79003E2CE1 /* Machlim_op.swift */; };
-		EEBB00B122511BAF003E2CE1 /* Boolien_op.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBB00B022511BAF003E2CE1 /* Boolien_op.swift */; };
-		EEBB00B322511BC9003E2CE1 /* Arithmetique_op.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBB00B222511BC9003E2CE1 /* Arithmetique_op.swift */; };
 		EEBB00B522525DED003E2CE1 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBB00B422525DED003E2CE1 /* Enums.swift */; };
 		EEBB00B72252610E003E2CE1 /* Cmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBB00B62252610E003E2CE1 /* Cmd.swift */; };
 		EEBB00B92252633C003E2CE1 /* CmdArgs.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBB00B82252633C003E2CE1 /* CmdArgs.swift */; };
@@ -33,9 +30,6 @@
 		DB90579D2252ECF500D6A61E /* FileManagerCu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerCu.swift; sourceTree = "<group>"; };
 		EEBB00A42247EF27003E2CE1 /* Targuil1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Targuil1; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEBB00A72247EF27003E2CE1 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		EEBB00AE22511B79003E2CE1 /* Machlim_op.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Machlim_op.swift; sourceTree = "<group>"; };
-		EEBB00B022511BAF003E2CE1 /* Boolien_op.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Boolien_op.swift; sourceTree = "<group>"; };
-		EEBB00B222511BC9003E2CE1 /* Arithmetique_op.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arithmetique_op.swift; sourceTree = "<group>"; };
 		EEBB00B422525DED003E2CE1 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		EEBB00B62252610E003E2CE1 /* Cmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cmd.swift; sourceTree = "<group>"; };
 		EEBB00B82252633C003E2CE1 /* CmdArgs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CmdArgs.swift; sourceTree = "<group>"; };
@@ -72,9 +66,6 @@
 			isa = PBXGroup;
 			children = (
 				EEBB00A72247EF27003E2CE1 /* main.swift */,
-				EEBB00AE22511B79003E2CE1 /* Machlim_op.swift */,
-				EEBB00B022511BAF003E2CE1 /* Boolien_op.swift */,
-				EEBB00B222511BC9003E2CE1 /* Arithmetique_op.swift */,
 				EEBB00B422525DED003E2CE1 /* Enums.swift */,
 				EEBB00B62252610E003E2CE1 /* Cmd.swift */,
 				EEBB00B82252633C003E2CE1 /* CmdArgs.swift */,
@@ -140,12 +131,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EEBB00B322511BC9003E2CE1 /* Arithmetique_op.swift in Sources */,
 				DB90579E2252ECF500D6A61E /* FileManagerCu.swift in Sources */,
-				EEBB00AF22511B79003E2CE1 /* Machlim_op.swift in Sources */,
 				EEBB00B522525DED003E2CE1 /* Enums.swift in Sources */,
 				EEBB00B92252633C003E2CE1 /* CmdArgs.swift in Sources */,
-				EEBB00B122511BAF003E2CE1 /* Boolien_op.swift in Sources */,
 				EEBB00B72252610E003E2CE1 /* Cmd.swift in Sources */,
 				EEBB00A82247EF27003E2CE1 /* main.swift in Sources */,
 			);

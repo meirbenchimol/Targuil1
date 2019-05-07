@@ -27,7 +27,8 @@ class CmdArgs: Cmd {
     }
     
     func pop_base_begin()->String{
-        var res = "@SP\n"
+        var res = "// \(name) \(arg1) \(arg2) \n"
+        res.append("@SP\n")
         res.append("A=M-1\n")
         res.append("D=M\n")
         return res
@@ -121,14 +122,16 @@ class CmdArgs: Cmd {
     
     // METHODE FOR PUSH
     private func translateToASM_PUSH_CONSTANT()->String{
-        var translate = "@\(arg2) \n"
+        var translate = "// \(name) \(arg1) \(arg2) \n"
+        translate.append("@\(arg2) \n")
         translate.append("D=A\n")
         translate.append(push_base())
         return translate
     }
     // for local+that+this
     private func translateToASM_PUSH(key:String)->String{
-        var translate = "@\(arg2) \n"
+        var translate = "// \(name) \(arg1) \(arg2) \n"
+        translate.append("@\(arg2) \n")
         translate.append("D=A\n")
         translate.append("@\(key)\n")
         translate.append("A=M+D\n")
@@ -138,7 +141,8 @@ class CmdArgs: Cmd {
     }
     
     private func translateToASM_PUSH_ARGUMENT()->String{
-        var translate = "@ARG\n"
+        var translate = "// \(name) \(arg1) \(arg2) \n"
+        translate.append("@ARG\n")
         translate.append("D=A\n")
         translate.append("@\(arg2)\n")
         translate.append("D=D+A\n")
@@ -153,7 +157,8 @@ class CmdArgs: Cmd {
     
     // for pointer+temp+static
     private func translateToASM_PUSH2(key:String)->String{
-        var translate = "@\(key)\n"
+        var translate = "// \(name) \(arg1) \(arg2) \n"
+        translate.append("@\(key)\n")
         translate.append("D=M\n")
         translate.append(push_base())
         return translate
@@ -168,8 +173,15 @@ class CmdArgs: Cmd {
         var translate = pop_base_begin()
         translate.append("@\(key)\n")
         translate.append("A=M\n")
-        for _ in 1...arg2 {
+        let to = Int(arg2)
+        if(to<1){
             translate.append("A=A+1\n")
+        }
+        else{
+        
+        for _ in 1...to {
+            translate.append("A=A+1\n")
+        }
         }
         translate.append(pop_base_end())
         return translate
